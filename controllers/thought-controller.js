@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { Thought, User } = require('../models');
 const thoughtController = {
     //create a thought
     addThought({ params, body }, res) {
@@ -42,16 +42,52 @@ const thoughtController = {
             .catch(err => res.json(err));
     },
 
-    updateThought() { },
+    updateThought(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $set: req.body },
+            { runValidators: true, new: true })
+            .then(dbThoughtData => {
+                if (!dbThoughtData) {
+                    return res.status(404).json({ message: 'no thought with this id' })
+                }
+                res.json(dbThoughtData);
+            })
+            .catch(err => res.json(err));
+    },
     getAllThoughts() { },
     getThoughtById() { },
-    addReaction() {
+
+    addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughttId },
+            { $addToSet: { reactions: req.body } },
+            { runValidators: true, new: true }
+        )
+            .then((dbThoughtData) => {
+                if (!dbThoughtData) {
+                    return res.status(404).json({ message: 'no thought with this id' });
+                }
+                res.json(dbThoughtData);
+            })
+            .catch(err => res.json(err));
 
     },
-    removeReaction() {
+    removeReaction(req, res) {
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { runValidators: true, new: true }
+        )
+            .then((dbThoughtData) => {
+                if (!dbThoughtData) {
+                    return res.status(404).json({ message: 'No thought with this id!' });
+                }
+                res.json(dbThoughtData);
+            })
+            .catch(err => res.json(err));
+    },
 
-    }
-
-}
+};
 
 module.exports = thoughtController;
