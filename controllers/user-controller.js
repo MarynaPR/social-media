@@ -40,7 +40,7 @@ const userController = {
     },
     //update
     updateUser({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, body, { new: true })//returns new updated parameter
+        User.findOneAndUpdate({ _id: params.id }, { $set: req.body }, { runValidators: true, new: true })//returns new updated parameter
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'no user with this id!' });
@@ -61,6 +61,29 @@ const userController = {
                 res.json(dbUserData);
             })
             .catch(err => res.status(400).json(err));
-    }
+    },
+    //add friend
+    addFriend(req, res) {
+        User.findOneAndUpdate({ _id: params.id }, { $addToSet: { friends: req.params.friendId } }, { new: true })//returns new updated parameter
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'no user with this id!' });
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
+    //delete friend
+    deleteFriend(req, res) {
+        User.findOneAndUpdate({ _id: req.params.userId }, { $pull: { friends: req.params.friendId } }, { new: true })//returns new updated parameter
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'no user with this id!' });
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => res.status(400).json(err));
+    },
+
 };
 module.exports = userController;
