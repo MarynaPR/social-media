@@ -1,10 +1,74 @@
-# 18 NoSQL: Social Network API
+# social-media
 
-MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. Over the last part of this course, you’ll use several of the technologies that social networking platforms use in their full-stack applications. Because the foundation of these applications is data, it’s important that you understand how to build and structure the API first.
+## Description :page_with_curl:
 
-Your challenge is to build an API for a social network using Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the [Express](https://www.npmjs.com/package/express) and [Mongoose](https://www.npmjs.com/package/mongoose) packages, you may also optionally use a JavaScript date library of your choice or the native JavaScript `Date` object to format timestamps.
+This application features an API for a social network using Express.js for routing, a MongoDB database, and the Mongoose ODM. In addition to using the express and  mongoose packages,  a JavaScript date library of your choice used or the native JavaScript `Date` object to format timestamps.
 
-Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
+## Images :camera_flash:
+
+The following image shows the web application's appearance:
+
+![Screenshot](public/images/Screenshot.png)
+
+ walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met:
+
+The following animations show application's API routes being tested in Insomnia Core.
+The first animation shows GET routes to return all users and all thoughts being tested in Insomnia Core:
+
+![Demo 01](./Assets/18-nosql-homework-demo-01.gif)
+
+The second animation shows GET routes to return a single user and a single thought being tested in Insomnia Core:
+
+![Demo 02](./Assets/18-nosql-homework-demo-02.gif)
+
+The third animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia Core:
+
+![Demo 03](./Assets/18-nosql-homework-demo-03.gif)
+
+Your walkthrough video should also show the POST, PUT, and DELETE routes for thoughts being tested in Insomnia Core.
+
+The final animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia Core:
+
+![Homework Demo 04](./Assets/18-nosql-homework-demo-04.gif)
+
+This walkthrough video should also show the POST and DELETE routes for reactions to thoughts being tested in Insomnia Core:
+
+## Technology Used :label: 
+
+* express
+* mongoose
+* javascript
+* node
+
+## Resources Used :wrench: 
+
+* [Express](https://www.npmjs.com/package/express)
+* [Mongoose](https://www.npmjs.com/package/mongoose)
+* [mongoose validation](https://mongoosejs.com/docs/validation.html)
+* [understanding virtuals](https://futurestud.io/tutorials/understanding-virtuals-in-mongoose)
+* [mongoose connection](https://mongoosejs.com/docs/connections.html#options)
+* [mongoose queries](https://mongoosejs.com/docs/queries.html)
+* [Validations](https://mongoosejs.com/docs/validation.html) or on [String Validators](https://mongoosejs.com/docs/schematypes.html#string-validators)
+* [express-session](https://www.npmjs.com/package/express-session)
+* [emoji-cheat-sheet:for readme](https://github.com/ikatyang/emoji-cheat-sheet)
+
+## Installation :electric_plug:
+* ` npm install mongoose`
+* `npm i mongoose-unique-validator`
+* `npm install --save-dev validator` 
+* run `npm start` at the root of the directory to connect to the server
+
+## Contribution :heavy_plus_sign: 
+
+Contributions, issues and feature requests are welcome. 
+Check out [issues page](https://github.com/MarynaPR/tech-blog/issues). 
+Give :star: if you found this project useful. 
+
+### Questions :question: 
+Feel free to contact me with any questions via email :e-mail: pryadkamaryna@gmail.com. 
+  
+If you'd like to see my other projects, please visit my :octocat: 
+[GitHub](https://github.com/MarynaPR?tab=repositories)
 
 
 ## User Story
@@ -29,32 +93,6 @@ THEN I am able to successfully create, update, and delete users and thoughts in 
 WHEN I test API POST and DELETE routes in Insomnia Core
 THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 ```
-
-
-## Mock-Up
-
-The following animations show examples of the application's API routes being tested in Insomnia Core.
-
-The first animation shows GET routes to return all users and all thoughts being tested in Insomnia Core:
-
-![Homework Demo 01](./Assets/18-nosql-homework-demo-01.gif)
-
-The second animation shows GET routes to return a single user and a single thought being tested in Insomnia Core:
-
-![Homework Demo 02](./Assets/18-nosql-homework-demo-02.gif)
-
-The third animation shows the POST, PUT, and DELETE routes for users being tested in Insomnia Core:
-
-![Homework Demo 03](./Assets/18-nosql-homework-demo-03.gif)
-
-Your walkthrough video should also show the POST, PUT, and DELETE routes for thoughts being tested in Insomnia Core.
-
-The final animation shows the POST and DELETE routes for a user’s friend list being tested in Insomnia Core:
-
-![Homework Demo 04](./Assets/18-nosql-homework-demo-04.gif)
-
-Your walkthrough video should also show the POST and DELETE routes for reactions to thoughts being tested in Insomnia Core.
-
 
 ## Getting Started
 
@@ -136,13 +174,5 @@ You are required to submit BOTH of the following for review:
 * A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
 
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-` npm install mongoose`
-`npm i mongoose-unique-validator`
-`npm install --save-dev validator` 
-<!-- email validation -->
 
-[mongoose validation](https://mongoosejs.com/docs/validation.html)
-[understanding virtuals](https://futurestud.io/tutorials/understanding-virtuals-in-mongoose)
-[mongoose connection](https://mongoosejs.com/docs/connections.html#options)
-[mongoose queries](https://mongoosejs.com/docs/queries.html)
-[Validations](https://mongoosejs.com/docs/validation.html) or on [String Validators](https://mongoosejs.com/docs/schematypes.html#string-validators)
+
