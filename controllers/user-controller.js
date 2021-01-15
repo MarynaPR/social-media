@@ -15,8 +15,8 @@ const userController = {
             });
     },
     //1 user by id
-    getUserById({ params }, res) {
-        User.findOne({ _id: params.id })
+    getUserById(req, res) {
+        User.findOne({ _id: req.params.userId })
             .populate('thoughts')
             .populate('friends')
             .select('-__v')
@@ -39,8 +39,8 @@ const userController = {
             .catch(err => res.status(400).json(err));
     },
     //update
-    updateUser({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, { $set: req.body }, { runValidators: true, new: true })//returns new updated parameter
+    updateUser(req, res) {
+        User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }, { runValidators: true, new: true })//returns new updated parameter
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'no user with this id!' });
@@ -51,20 +51,21 @@ const userController = {
             .catch(err => res.status(400).json(err));
     },
     //delete
-    deleteUser({ params }, res) {
-        User.findOneAndDelete({ _id: params.id })
+    deleteUser(req, res) {
+        User.findOneAndDelete({ _id: req.params.userId })
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'no user found with this id!' });
-                    return;
                 }
-                res.json(dbUserData);
+                return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
+            }).then(() => {
+                res.json({ message: 'user and thoughts deleted' });
             })
             .catch(err => res.status(400).json(err));
     },
     //add friend
     addFriend(req, res) {
-        User.findOneAndUpdate({ _id: params.id }, { $addToSet: { friends: req.params.friendId } }, { new: true })//returns new updated parameter
+        User.findOneAndUpdate({ _id: req.params.userId }, { $addToSet: { friends: req.params.friendId } }, { new: true })//returns new updated parameter
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({ message: 'no user with this id!' });
